@@ -18,6 +18,7 @@ from InformationSystemModel import views
 from django.conf.urls import url
 
 urlpatterns = [
+    url(r'^$', views.hello),
     url(r'^admin/', admin.site.urls),
     url(r'^db_handle', views.db_handle),
 ]

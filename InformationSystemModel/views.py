@@ -28,6 +28,9 @@ def db_handle(request):
     return HttpResponse('OK')
 '''
 
+def hello(request):
+    return HttpResponse("Hello world ! ")
+
 def db_handle(request):
     if request.method == "POST":
         models.UserInfo.objects.create(username=request.POST['username'],password=request.POST['password'],age=request.POST['age'])
