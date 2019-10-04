@@ -36,3 +36,4 @@ def db_handle(request):
         models.UserInfo.objects.create(username=request.POST['username'],password=request.POST['password'],age=request.POST['age'])
     user_list_obj = models.UserInfo.objects.all()
     return render(request, 't1.html', {'li': user_list_obj})
+
