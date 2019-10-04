@@ -29,7 +29,7 @@ def db_handle(request):
 '''
 
 def hello(request):
-    return HttpResponse("Hello world ! ")
+    return HttpResponse("Hello world !!!! ")
 
 def db_handle(request):
     if request.method == "POST":
