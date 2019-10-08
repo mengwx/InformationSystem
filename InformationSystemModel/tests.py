@@ -17,15 +17,53 @@ def treeCreat(pid, name):
     temp = models.Tree.objects.filter(PID = pid, Name = name)
     if temp.count() != 0:
         return False
-    parent = models.Tree.objects.get(ID = pid)
-    layer = parent.Layer + 1
+
+    if pid == 0:
+        dic = {"PID": pid, "Name": name, "Layer": 1}
+        models.Tree.objects.create(**dic)
+        dic = {"ID": models.Tree.objects.get(PID=pid, Name=name).ID, "Name": name}
+        models.XT.objects.create(**dic)
+        return
+    parent = models.Tree.objects.filter(ID = pid)
+    if parent.count() == 0:
+        return False
+    layer = parent[0].Layer + 1
+    if layer > 5:
+        return
     dic = {"PID":pid,"Name":name,"Layer":layer}
     models.Tree.objects.create(**dic)
+
+    if layer == 2:
+        dic = {"ID":models.Tree.objects.get(PID = pid, Name = name).ID,"Name":name}
+        models.FXT.objects.create(**dic)
+    if layer == 3:
+        dic = {"ID":models.Tree.objects.get(PID = pid, Name = name).ID,"Name":name}
+        models.ZXT.objects.create(**dic)
+    if layer == 4:
+        dic = {"ID":models.Tree.objects.get(PID = pid, Name = name).ID,"Name":name}
+        models.DJ.objects.create(**dic)
+    if layer == 5:
+        dic = {"ID":models.Tree.objects.get(PID = pid, Name = name).ID,"Name":name}
+        models.BZJ.objects.create(**dic)
+
     return True
 
 #根据id删除树中一项
 def treeDelete(id):
-    models.Tree.objects.filter(ID = id).delete()
+    deleteObj = models.Tree.objects.filter(ID = id)
+    if deleteObj.count() == 0:
+        return
+    if deleteObj[0].Layer == 1:
+        models.XT.objects.filter(ID=id).delete()
+    if deleteObj[0].Layer == 2:
+        models.FXT.objects.filter(ID=id).delete()
+    if deleteObj[0].Layer == 3:
+        models.ZXT.objects.filter(ID=id).delete()
+    if deleteObj[0].Layer == 4:
+        models.DJ.objects.filter(ID=id).delete()
+    if deleteObj[0].Layer == 5:
+        models.BZJ.objects.filter(ID=id).delete()
+    deleteObj.delete()
 
 
 
@@ -44,10 +82,10 @@ def getMessage(id, layer):
 def Test(request):
 
     #树中新创建一项
-    #treeCreat(2,"测试测试1")
+    treeCreat(222,"测试测试1")
 
     #树中删除一项
-    treeDelete(18)
+    #treeDelete(22)
 
     #建树
     #初始化

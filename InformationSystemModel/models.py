@@ -12,9 +12,25 @@ class Tree(models.Model):
     Name = models.CharField(max_length=80)
     Layer = models.IntegerField()
 
+class XT(models.Model):
+    ID = models.IntegerField()
+    Name = models.CharField(max_length=80)
+
 class FXT(models.Model):
     ID = models.IntegerField()
     Name = models.CharField(max_length=80)
     Update_time = models.DateTimeField()
     temp1 = models.CharField(max_length=200)
     temp2 = models.CharField(max_length=200)
+
+class ZXT(models.Model):
+    ID = models.IntegerField()
+    Name = models.CharField(max_length=80)
+
+class DJ(models.Model):
+    ID = models.IntegerField()
+    Name = models.CharField(max_length=80)
+
+class BZJ(models.Model):
+    ID = models.IntegerField()
+    Name = models.CharField(max_length=80)
