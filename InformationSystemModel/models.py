@@ -34,3 +34,11 @@ class DJ(models.Model):
 class BZJ(models.Model):
     ID = models.IntegerField()
     Name = models.CharField(max_length=80)
+
+class PTB(models.Model):
+    ID = models.IntegerField()
+    NO = models.CharField(max_length=80)
+    NAME = models.CharField(max_length=80)
+    NUM = models.IntegerField()
+    DESIGNER = models.CharField(max_length=80)
+    PRODUCER = models.CharField(max_length=80)
